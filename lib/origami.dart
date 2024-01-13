@@ -1,7 +1,4 @@
 library origami;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export './src/builder/origami_widget_builder.dart';
+export 'src/widgets/origami_widgets.dart';

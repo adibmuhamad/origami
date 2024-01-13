@@ -1,0 +1,62 @@
+{
+  "type": "column",
+  "children": [
+    {
+      "type": "container",
+      "color": "#FF0000",
+      "width": 200.0,
+      "height": 100.0,
+      "child": {
+        "type": "text",
+        "text": "Hello, Origami!",
+        "fontSize": 20.0,
+        "color": "#FFFFFF"
+      }
+    },
+    {
+      "type": "row",
+      "children": [
+        {
+          "type": "textButton",
+          "onPressed": {},
+          "child": {
+            "type": "text",
+            "text": "Press me!"
+          }
+        },
+        {
+          "type": "sizedBox",
+          "width": 20.0
+        },
+        {
+          "type": "elevatedButton",
+          "onPressed": {},
+          "child": {
+            "type": "text",
+            "text": "Submit"
+          }
+        }
+      ]
+    },
+    {
+      "type": "singleChildScrollView",
+      "child": {
+        "type": "column",
+        "children": [
+          {
+            "type": "image",
+            "url": "https://example.com/image.jpg",
+            "width": 300.0,
+            "height": 150.0
+          },
+          {
+            "type": "placeholder",
+            "color": "#00FF00",
+            "fallbackWidth": 100.0,
+            "fallbackHeight": 200.0
+          }
+        ]
+      }
+    }
+  ]
+}
