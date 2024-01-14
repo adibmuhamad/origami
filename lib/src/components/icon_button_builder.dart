@@ -4,13 +4,13 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class IconButtonBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return IconButton(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
-      icon: OrigamiWidgetBuilder.buildWidget(data["icon"]),
+      key: data['key'] == null ? null : Key(data['key']),
+      icon: OrigamiWidgetBuilder.buildWidget(context, data["icon"]),
       onPressed: data["onPressed"] != null
           ? () {
-              OrigamiActionHandler.handleAction(data["onPressed"]);
+              OrigamiActionHandler.handleAction(context, data["onPressed"]);
             }
           : null,
       style: OrigamiWidgetUtil.parseButtonStyle(data['style']),

@@ -4,16 +4,16 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/origami_widget_util.dart';
 
 class InkWellBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return InkWell(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+      key: data['key'] == null ? null : Key(data['key']),
       borderRadius: OrigamiWidgetUtil.parseBorderRadius(data),
       onTap: data["onTap"] != null
           ? () {
-              OrigamiActionHandler.handleAction(data["onTap"]);
+              OrigamiActionHandler.handleAction(context, data["onTap"]);
             }
           : null,
-      child: data['child'] == null ? null : OrigamiWidgetBuilder.buildWidget(data['child']),
+      child: data['child'] == null ? null : OrigamiWidgetBuilder.buildWidget(context, data['child']),
     );
   }
 }

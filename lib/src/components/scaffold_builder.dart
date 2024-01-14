@@ -4,21 +4,23 @@ import 'package:origami/src/components/index.dart';
 import 'package:origami/src/utils/origami_widget_util.dart';
 
 class ScaffoldBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return Scaffold(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+      key: data['key'] == null ? null : Key(data['key']),
       appBar: (data['appBar'] != null)
-          ? AppBarBuilder.build(data['appBar'])
+          ? AppBarBuilder.build(context, data['appBar'])
           : null,
       backgroundColor: OrigamiWidgetUtil.parseColor(data['backgroundColor']),
-      extendBody:OrigamiWidgetUtil.parseCondition( data["extendBody"]) ?? false,
+      extendBody: OrigamiWidgetUtil.parseCondition(data["extendBody"]) ?? false,
       primary: OrigamiWidgetUtil.parseCondition(data["primary"]) ?? true,
-      resizeToAvoidBottomInset: data["resizeToAvoidBottomInset"],
+      resizeToAvoidBottomInset:
+          OrigamiWidgetUtil.parseCondition(data["resizeToAvoidBottomInset"]),
       body: (data["body"] != null)
-          ? OrigamiWidgetBuilder.buildWidget(data["body"])
+          ? OrigamiWidgetBuilder.buildWidget(context, data["body"])
           : null,
       floatingActionButton: (data["floatingActionButton"] != null)
-          ? FloatingActionButtonBuilder.build(data["floatingActionButton"])
+          ? FloatingActionButtonBuilder.build(
+              context, data["floatingActionButton"])
           : null,
     );
   }

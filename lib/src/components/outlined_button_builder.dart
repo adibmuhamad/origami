@@ -4,9 +4,9 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/origami_widget_util.dart';
 
 class OutlinedButtonBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return OutlinedButton(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+      key: data['key'] == null ? null : Key(data['key']),
       autofocus: OrigamiWidgetUtil.parseCondition(data["autoFocus"]) ?? false,
       focusNode: data["focusNode"] == null
           ? null
@@ -21,13 +21,13 @@ class OutlinedButtonBuilder {
             ),
       onPressed: data["onPressed"] != null
           ? () {
-              OrigamiActionHandler.handleAction(data["onPressed"]);
+              OrigamiActionHandler.handleAction(context, data["onPressed"]);
             }
           : null,
       style: OrigamiWidgetUtil.parseButtonStyle(data['style']),
       child: data['child'] == null
           ? null
-          : OrigamiWidgetBuilder.buildWidget(data['child']),
+          : OrigamiWidgetBuilder.buildWidget(context, data['child']),
     );
   }
 }

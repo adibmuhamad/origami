@@ -3,21 +3,21 @@ import 'package:origami/src/components/index.dart';
 import 'package:origami/src/components/inkwell_builder.dart';
 
 abstract class OrigamiWidgetBuilder {
-  static Widget buildWidget(Map<String, dynamic> data) {
+  static Widget buildWidget(BuildContext context, Map<String, dynamic> data) {
     String type = data["type"];
     if (origamiWidgetBuilders.containsKey(type)) {
-      return origamiWidgetBuilders[type]!(data);
+      return origamiWidgetBuilders[type]!(context, data);
     } else {
-      // Handle unknown widget type or throw an error
-      return Container();
+      return const SizedBox();
     }
   }
 
-  static List<Widget> buildWidgetsList(List<dynamic> dataList) {
-    return dataList.map((data) => buildWidget(data)).toList();
+  static List<Widget> buildWidgetsList(
+      BuildContext context, List<dynamic> dataList) {
+    return dataList.map((data) => buildWidget(context, data)).toList();
   }
 
-  static Map<String, Widget Function(Map<String, dynamic>)>
+  static Map<String, Widget Function(BuildContext, Map<String, dynamic>)>
       origamiWidgetBuilders = {
     'alertDialog': AlertDialogBuilder.build,
     'appBar': AppBarBuilder.build,
@@ -43,8 +43,7 @@ abstract class OrigamiWidgetBuilder {
     'row': RowBuilder.build,
     'safeArea': SafeAreaBuilder.build,
     'scaffold': ScaffoldBuilder.build,
-    'singleChildScrollView':
-        SingleChildScrollViewBuilder.build,
+    'singleChildScrollView': SingleChildScrollViewBuilder.build,
     'sizedBox': SizedBoxBuilder.build,
     'spacer': SpacerBuilder.build,
     'text': TextBuilder.build,

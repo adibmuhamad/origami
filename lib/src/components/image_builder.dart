@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:origami/src/utils/index.dart';
 
 class ImageBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     try {
       switch (data['imageType']) {
         case 'asset':
           return Image.asset(
-            key: data['key'] == null ? GlobalKey() : Key(data['key']),
             data['value'],
+            key: data['key'] == null ? null : Key(data['key']),
             width: data['width']?.toDouble() ?? 100.0,
             height: data['height']?.toDouble() ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
@@ -19,8 +19,8 @@ class ImageBuilder {
           );
         case 'network':
           return Image.network(
-            key: data['key'] == null ? GlobalKey() : Key(data['key']),
             data['value'],
+            key: data['key'] == null ? null : Key(data['key']),
             width: data['width']?.toDouble() ?? 100.0,
             height: data['height']?.toDouble() ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
@@ -38,17 +38,17 @@ class ImageBuilder {
           );
         case 'file':
           return Image.file(
-            key: data['key'] == null ? GlobalKey() : Key(data['key']),
             data['value'],
+            key: data['key'] == null ? null : Key(data['key']),
             width: data['width']?.toDouble() ?? 100.0,
             height: data['height']?.toDouble() ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
             fit: OrigamiWidgetUtil.parseBoxFit(data['fit']),
           );
-          case 'memory':
+        case 'memory':
           return Image.memory(
-            key: data['key'] == null ? GlobalKey() : Key(data['key']),
             data['value'],
+            key: data['key'] == null ? null : Key(data['key']),
             width: data['width']?.toDouble() ?? 100.0,
             height: data['height']?.toDouble() ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
@@ -57,8 +57,9 @@ class ImageBuilder {
         default:
           return Container();
       }
-    } catch (e) {
-      debugPrint('Error load image: $e');
+    } catch (e, stackTrace) {
+      debugPrint('Error: $e');
+      debugPrint('Stack trace: $stackTrace');
     }
     return Container();
   }

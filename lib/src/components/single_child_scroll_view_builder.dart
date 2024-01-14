@@ -3,9 +3,9 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class SingleChildScrollViewBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return SingleChildScrollView(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+      key: data['key'] == null ? null : Key(data['key']),
       scrollDirection: (data["scrollDirection"] != null)
           ? (data["scrollDirection"] == 'vertical')
               ? Axis.vertical
@@ -15,7 +15,7 @@ class SingleChildScrollViewBuilder {
       physics: OrigamiWidgetUtil.parseScrollPhysics(data['physics']),
       reverse: OrigamiWidgetUtil.parseCondition(data["reverse"]) ?? false,
       child: (data["child"] != null)
-          ? OrigamiWidgetBuilder.buildWidget(data["child"])
+          ? OrigamiWidgetBuilder.buildWidget(context, data["child"])
           : null,
     );
   }

@@ -4,9 +4,9 @@ import 'package:origami/src/components/icon_builder.dart';
 import 'package:origami/src/utils/index.dart';
 
 class TextFormFieldBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return TextFormField(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+      key: data['key'] == null ? null : Key(data['key']),
       validator: data['validator'],
       controller: TextEditingController(),
       textAlign: OrigamiWidgetUtil.parseTextAlign(data['textAlign']) ??
@@ -35,14 +35,14 @@ class TextFormFieldBuilder {
             OrigamiWidgetUtil.parseColor(data['decoration']['fillColor']),
         label: data['decoration']["label"] == null
             ? null
-            : OrigamiWidgetBuilder.buildWidget(data['decoration']['label']),
+            : OrigamiWidgetBuilder.buildWidget(context, data['decoration']['label']),
         labelText: data['decoration']['label'] ?? '',
         hintText: data['decoration']['hint'] ?? '',
         prefixIcon: data['decoration']['prefixIcon'] != null
-            ? IconBuilder.build(data['decoration']['prefixIcon'])
+            ? IconBuilder.build(context, data['decoration']['prefixIcon'])
             : null,
         suffixIcon: data['decoration']['suffixIcon'] != null
-            ? IconBuilder.build(data['decoration']['suffixIcon'])
+            ? IconBuilder.build(context, data['decoration']['suffixIcon'])
             : null,
         focusedErrorBorder: OrigamiWidgetUtil.parseInputBorder(
             data['decoration']['focusedErrorBorder']),

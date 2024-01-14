@@ -3,7 +3,7 @@ import 'package:origami/src/builder/index.dart';
 
 class OrigamiActionHandler {
   static Future<dynamic>? handleAction(
-      Map<dynamic, dynamic> action, BuildContext? context) {
+      BuildContext context, Map<dynamic, dynamic> action) {
     if (action.containsKey('type')) {
       String actionType = action['type'];
       switch (actionType) {
@@ -19,25 +19,25 @@ class OrigamiActionHandler {
   }
 
   static Future<dynamic>? _showDialog(
-      BuildContext? context, Map<dynamic, dynamic> data) {
+      BuildContext context, Map<dynamic, dynamic> data) {
     return showDialog(
       context: context,
       builder: (context) {
-        return OrigamiWidgetBuilder.buildWidget(data['data']);
+        return OrigamiWidgetBuilder.buildWidget(context, data['data']);
       },
     );
   }
 
   static Future<dynamic>? _showBottomSheet(
-      BuildContext? context, Map<dynamic, dynamic> data) {
+      BuildContext context, Map<dynamic, dynamic> data) {
     return showModalBottomSheet(
       context: context,
-      builder: (_) => OrigamiWidgetBuilder.buildWidget(data['data']),
+      builder: (_) => OrigamiWidgetBuilder.buildWidget(context, data['data']),
     );
   }
 
   static Future<dynamic>? _navigate(
-      BuildContext? context, Map<dynamic, dynamic> data) {
+      BuildContext context, Map<dynamic, dynamic> data) {
     switch (data['action']) {
       case 'pushNamed':
         return Navigator.of(context).pushNamed(data['data']);

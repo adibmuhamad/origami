@@ -3,9 +3,9 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class FloatingActionButtonBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return FloatingActionButton(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+      key: data['key'] == null ? null : Key(data['key']),
       onPressed: () {},
       backgroundColor: OrigamiWidgetUtil.parseColor(data['backgroundColor']),
       autofocus: OrigamiWidgetUtil.parseCondition(data["autofocus"]) ?? false,
@@ -34,7 +34,7 @@ class FloatingActionButtonBuilder {
       mini: OrigamiWidgetUtil.parseCondition(data["mini"]) ?? false,
       tooltip: data["tooltip"],
       splashColor: OrigamiWidgetUtil.parseColor(data['splashColor']),
-      child: data['child'] == null ? null : OrigamiWidgetBuilder.buildWidget(data['child']),
+      child: data['child'] == null ? null : OrigamiWidgetBuilder.buildWidget(context, data['child']),
     );
   }
 }

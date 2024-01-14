@@ -3,9 +3,9 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class CardBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return Card(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+     key: data['key'] == null ? null : Key(data['key']),
       semanticContainer: OrigamiWidgetUtil.parseCondition(data["semanticContainer"]) ?? true,
       elevation: data["elevation"]?.toDouble(),
       color: OrigamiWidgetUtil.parseColor(data['color']),
@@ -16,7 +16,7 @@ class CardBuilder {
               borderRadius: OrigamiWidgetUtil.parseBorderRadiusGeometry(data["shape"]["borderRadius"]),
               side: OrigamiWidgetUtil.parseBorderSide(data["shape"]["side"]),
             ),
-      child: (data['child'] != null) ? OrigamiWidgetBuilder.buildWidget(data['child']) : null,
+      child: (data['child'] != null) ? OrigamiWidgetBuilder.buildWidget(context, data['child']) : null,
     );
   }
 }

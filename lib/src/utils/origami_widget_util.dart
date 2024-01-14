@@ -18,8 +18,9 @@ class OrigamiWidgetUtil {
         // Parse the hex color value and add the alpha channel
         return Color(int.parse('0xFF$hexColor'));
       }
-    } catch (e) {
-      debugPrint('Error parsing color: $e');
+    } catch (e, stackTrace) {
+      debugPrint('Error: $e');
+      debugPrint('Stack trace: $stackTrace');
     }
     return null;
   }

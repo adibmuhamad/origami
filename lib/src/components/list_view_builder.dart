@@ -3,9 +3,9 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class ListViewBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return ListView(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
+      key: data['key'] == null ? null : Key(data['key']),
       scrollDirection: (data["scrollDirection"] != null)
           ? (data["scrollDirection"] == 'vertical')
               ? Axis.vertical
@@ -25,7 +25,7 @@ class ListViewBuilder {
       physics: OrigamiWidgetUtil.parseScrollPhysics(data['physics']),
       reverse: OrigamiWidgetUtil.parseCondition(data["reverse"]) ?? false,
       shrinkWrap: OrigamiWidgetUtil.parseCondition(data["shrinkWrap"]) ?? false,
-      children: OrigamiWidgetBuilder.buildWidgetsList(data["children"]),
+      children: OrigamiWidgetBuilder.buildWidgetsList(context, data["children"]),
     );
   }
 }

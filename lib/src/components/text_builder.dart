@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:origami/src/utils/index.dart';
 
 class TextBuilder {
-  static Widget build(Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data) {
     return Text(
-      key: data['key'] == null ? GlobalKey() : Key(data['key']),
       data['text'] ?? '',
+      key: data['key'] == null ? null : Key(data['key']),
       textAlign: OrigamiWidgetUtil.parseTextAlign(data['textAlign']),
       maxLines: data["maxLines"]?.toInt(),
       overflow: OrigamiWidgetUtil.parseTextOverflow(data['overflow']),

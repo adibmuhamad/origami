@@ -70,7 +70,8 @@ class MyApp extends StatelessWidget {
                 {
                   "type": "image",
                   "imageType": "network",
-                  "value": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
+                  "value":
+                      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
                   "width": 300.0,
                   "height": 150.0
                 },
@@ -88,7 +89,10 @@ class MyApp extends StatelessWidget {
     };
 
     // Build the UI using OrigamiBuilder
-    Widget dynamicUI = OrigamiBuilder.buildFromJson(jsonData);
+    Widget dynamicUI = OrigamiBuilder.buildFromJson(
+      context,
+      json: jsonData,
+    );
 
     return MaterialApp(
       home: dynamicUI,
