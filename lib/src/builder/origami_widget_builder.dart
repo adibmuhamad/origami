@@ -1,21 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:origami/src/builder/appbar_builder.dart';
-import 'package:origami/src/builder/column_builder.dart';
-import 'package:origami/src/builder/container_builder.dart';
-import 'package:origami/src/builder/elevated_button_builder.dart';
-import 'package:origami/src/builder/icon_builder.dart';
-import 'package:origami/src/builder/icon_button_builder.dart';
-import 'package:origami/src/builder/image_builder.dart';
-import 'package:origami/src/builder/list_view_builder.dart';
-import 'package:origami/src/builder/placeholder_builder.dart';
-import 'package:origami/src/builder/row_builder.dart';
-import 'package:origami/src/builder/safe_area_builder.dart';
-import 'package:origami/src/builder/scaffold_builder.dart';
-import 'package:origami/src/builder/single_child_scroll_view_builder.dart';
-import 'package:origami/src/builder/sized_box_builder.dart';
-import 'package:origami/src/builder/text_builder.dart';
-import 'package:origami/src/builder/text_button_builder.dart';
-import 'package:origami/src/builder/text_form_field_builder.dart';
+import 'package:origami/src/components/index.dart';
+import 'package:origami/src/components/inkwell_builder.dart';
 
 abstract class OrigamiWidgetBuilder {
   static Widget buildWidget(Map<String, dynamic> data) {
@@ -32,23 +17,40 @@ abstract class OrigamiWidgetBuilder {
     return dataList.map((data) => buildWidget(data)).toList();
   }
 
-  static Map<String, Widget Function(Map<String, dynamic>)> origamiWidgetBuilders = {
-    'appBar': AppBarBuilder.buildAppBar,
-    'column': ColumnBuilder.buildColumn,
-    'container': ContainerBuilder.buildContainer,
-    'elevatedButton': ElevatedButtonBuilder.buildElevatedButton,
-    'icon': IconBuilder.buildIcon,
-    'iconButton': IconButtonBuilder.buildIconButton,
-    'image': ImageBuilder.buildImage,
-    'listView': ListViewBuilder.buildListView,
-    'placeholder': PlaceholderBuilder.buildPlaceholder,
-    'row': RowBuilder.buildRow,
-    'safeArea': SafeAreaBuilder.buildSafeArea,
-    'scaffold': ScaffoldBuilder.buildScaffold,
-    'singleChildScrollView': SingleChildScrollViewBuilder.buildSingleChildScrollView,
-    'sizedBox': SizedBoxBuilder.buildSizedBox,
-    'text': TextBuilder.buildText,
-    'textButton': TextButtonBuilder.buildTextButton,
-    'textFormField': TextFormFieldBuilder.buildTextFormField,
+  static Map<String, Widget Function(Map<String, dynamic>)>
+      origamiWidgetBuilders = {
+    'alertDialog': AlertDialogBuilder.build,
+    'appBar': AppBarBuilder.build,
+    'card': CardBuilder.build,
+    'column': ColumnBuilder.build,
+    'container': ContainerBuilder.build,
+    'divider': DividerBuilder.build,
+    'elevatedButton': ElevatedButtonBuilder.build,
+    'expanded': ExpandedBuilder.build,
+    'fittedBox': FittedBoxBuilder.build,
+    'flexible': FlexibleBuilder.build,
+    'floatingActionButton': FloatingActionButtonBuilder.build,
+    'form': FormBuilder.build,
+    'gestureDetector': GestureDetectorBuilder.build,
+    'icon': IconBuilder.build,
+    'iconButton': IconButtonBuilder.build,
+    'image': ImageBuilder.build,
+    'inkWell': InkWellBuilder.build,
+    'listView': ListViewBuilder.build,
+    'outlinedButton': OutlinedButtonBuilder.build,
+    'placeholder': PlaceholderBuilder.build,
+    'positioned': PositionedBuilder.build,
+    'row': RowBuilder.build,
+    'safeArea': SafeAreaBuilder.build,
+    'scaffold': ScaffoldBuilder.build,
+    'singleChildScrollView':
+        SingleChildScrollViewBuilder.build,
+    'sizedBox': SizedBoxBuilder.build,
+    'spacer': SpacerBuilder.build,
+    'text': TextBuilder.build,
+    'textButton': TextButtonBuilder.build,
+    'textFormField': TextFormFieldBuilder.build,
+    'verticalDivider': VerticalDividerBuilder.build,
+    'wrap': WrapBuilder.build,
   };
 }

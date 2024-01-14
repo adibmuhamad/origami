@@ -87,8 +87,8 @@ class MyApp extends StatelessWidget {
       }
     };
 
-    // Build the UI using OrigamiWidgetBuilder
-    Widget dynamicUI = OrigamiWidgetBuilder.buildWidget(jsonData);
+    // Build the UI using OrigamiBuilder
+    Widget dynamicUI = OrigamiBuilder.buildFromJson(jsonData);
 
     return MaterialApp(
       home: dynamicUI,
