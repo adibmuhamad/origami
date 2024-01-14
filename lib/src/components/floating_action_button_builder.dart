@@ -10,11 +10,12 @@ class FloatingActionButtonBuilder {
       backgroundColor: OrigamiWidgetUtil.parseColor(data['backgroundColor']),
       autofocus: OrigamiWidgetUtil.parseCondition(data["autofocus"]) ?? false,
       clipBehavior: OrigamiWidgetUtil.parseClip(data["clipBehavior"]),
-      disabledElevation: data["disabledElevation"]?.toDouble(),
-      elevation: data["elevation"]?.toDouble(),
+      disabledElevation:
+          OrigamiWidgetUtil.parseDouble(data["disabledElevation"]),
+      elevation: OrigamiWidgetUtil.parseDouble(data["elevation"]),
       enableFeedback: data["enableFeedback"],
       focusColor: OrigamiWidgetUtil.parseColor(data['focusColor']),
-      focusElevation: data["focusElevation"]?.toDouble(),
+      focusElevation: OrigamiWidgetUtil.parseDouble(data["focusElevation"]),
       focusNode: data["focusNode"] == null
           ? null
           : FocusNode(
@@ -27,14 +28,17 @@ class FloatingActionButtonBuilder {
               skipTraversal: data["focusNode"]["skipTraversal"] ?? false,
             ),
       foregroundColor: OrigamiWidgetUtil.parseColor(data['foregroundColor']),
-      highlightElevation: data["highlightElevation"]?.toDouble(),
+      highlightElevation:
+          OrigamiWidgetUtil.parseDouble(data["highlightElevation"]),
       hoverColor: OrigamiWidgetUtil.parseColor(data['hoverColor']),
       isExtended: OrigamiWidgetUtil.parseCondition(data["isExtended"]) ?? false,
-      hoverElevation: data["hoverElevation"]?.toDouble(),
+      hoverElevation: OrigamiWidgetUtil.parseDouble(data["hoverElevation"]),
       mini: OrigamiWidgetUtil.parseCondition(data["mini"]) ?? false,
       tooltip: data["tooltip"],
       splashColor: OrigamiWidgetUtil.parseColor(data['splashColor']),
-      child: data['child'] == null ? null : OrigamiWidgetBuilder.buildWidget(context, data['child']),
+      child: data['child'] == null
+          ? null
+          : OrigamiWidgetBuilder.buildWidget(context, data['child']),
     );
   }
 }

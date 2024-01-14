@@ -1,6 +1,6 @@
 name: origami
 description: Origami is a Server-Driven UI (SDUI) library for Flutter that allow to build beautiful cross-platform applications with JSON in real time.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/adibmuhamad/origami
 
 environment:

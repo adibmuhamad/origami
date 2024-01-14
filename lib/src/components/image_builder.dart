@@ -9,8 +9,8 @@ class ImageBuilder {
           return Image.asset(
             data['value'],
             key: data['key'] == null ? null : Key(data['key']),
-            width: data['width']?.toDouble() ?? 100.0,
-            height: data['height']?.toDouble() ?? 100.0,
+            width: OrigamiWidgetUtil.parseDouble(data['width']) ?? 100.0,
+            height: OrigamiWidgetUtil.parseDouble(data['height']) ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
             fit: (data['fit'] != null)
                 ? BoxFit.values
@@ -21,14 +21,14 @@ class ImageBuilder {
           return Image.network(
             data['value'],
             key: data['key'] == null ? null : Key(data['key']),
-            width: data['width']?.toDouble() ?? 100.0,
-            height: data['height']?.toDouble() ?? 100.0,
+            width: OrigamiWidgetUtil.parseDouble(data['width']) ?? 100.0,
+            height: OrigamiWidgetUtil.parseDouble(data['height']) ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
             fit: OrigamiWidgetUtil.parseBoxFit(data['fit']),
             errorBuilder: (context, error, stackTrace) {
               return Container(
-                width: data['width']?.toDouble() ?? 100.0,
-                height: data['height']?.toDouble() ?? 100.0,
+                width: OrigamiWidgetUtil.parseDouble(data['width']) ?? 100.0,
+                height: OrigamiWidgetUtil.parseDouble(data['height']) ?? 100.0,
                 color: OrigamiWidgetUtil.parseColor(data['color']),
                 child: const Center(
                   child: Text("Image Load Error"),
@@ -40,8 +40,8 @@ class ImageBuilder {
           return Image.file(
             data['value'],
             key: data['key'] == null ? null : Key(data['key']),
-            width: data['width']?.toDouble() ?? 100.0,
-            height: data['height']?.toDouble() ?? 100.0,
+            width: OrigamiWidgetUtil.parseDouble(data['width']) ?? 100.0,
+            height: OrigamiWidgetUtil.parseDouble(data['height']) ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
             fit: OrigamiWidgetUtil.parseBoxFit(data['fit']),
           );
@@ -49,8 +49,8 @@ class ImageBuilder {
           return Image.memory(
             data['value'],
             key: data['key'] == null ? null : Key(data['key']),
-            width: data['width']?.toDouble() ?? 100.0,
-            height: data['height']?.toDouble() ?? 100.0,
+            width: OrigamiWidgetUtil.parseDouble(data['width']) ?? 100.0,
+            height: OrigamiWidgetUtil.parseDouble(data['height']) ?? 100.0,
             color: OrigamiWidgetUtil.parseColor(data['color']),
             fit: OrigamiWidgetUtil.parseBoxFit(data['fit']),
           );

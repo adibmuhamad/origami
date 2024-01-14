@@ -16,6 +16,7 @@ export 'icon_button_builder.dart';
 export 'image_builder.dart';
 export 'list_view_builder.dart';
 export 'outlined_button_builder.dart';
+export 'padding_builder.dart';
 export 'placeholder_builder.dart';
 export 'positioned_builder.dart';
 export 'row_builder.dart';

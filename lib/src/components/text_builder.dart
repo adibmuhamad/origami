@@ -7,11 +7,12 @@ class TextBuilder {
       data['text'] ?? '',
       key: data['key'] == null ? null : Key(data['key']),
       textAlign: OrigamiWidgetUtil.parseTextAlign(data['textAlign']),
-      maxLines: data["maxLines"]?.toInt(),
+      maxLines: OrigamiWidgetUtil.parseInt(data["maxLines"]),
       overflow: OrigamiWidgetUtil.parseTextOverflow(data['overflow']),
-      textDirection: OrigamiWidgetUtil.parseTextDirection(data['textDirection']),
+      textDirection:
+          OrigamiWidgetUtil.parseTextDirection(data['textDirection']),
       softWrap: OrigamiWidgetUtil.parseCondition(data["softWrap"]),
-      textScaleFactor: data["textScaleFactor"]?.toDouble(),
+      textScaleFactor: OrigamiWidgetUtil.parseDouble(data["textScaleFactor"]),
       semanticsLabel: data["semanticsLabel"],
       style: OrigamiWidgetUtil.parseTextStyle(data['style']),
     );

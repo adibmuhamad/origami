@@ -3,11 +3,14 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class AppBarBuilder {
-  static PreferredSizeWidget build(BuildContext context, Map<String, dynamic> data) {
+  static PreferredSizeWidget build(
+      BuildContext context, Map<String, dynamic> data) {
     return AppBar(
       key: data['key'] == null ? null : Key(data['key']),
       centerTitle: OrigamiWidgetUtil.parseCondition(data["centerTitle"]),
-      automaticallyImplyLeading: OrigamiWidgetUtil.parseCondition(data["automaticallyImplyLeading"]) ?? true,
+      automaticallyImplyLeading:
+          OrigamiWidgetUtil.parseCondition(data["automaticallyImplyLeading"]) ??
+              true,
       leading: (data["leading"] != null)
           ? OrigamiWidgetBuilder.buildWidget(context, data["leading"])
           : null,
@@ -19,8 +22,8 @@ class AppBarBuilder {
       actions: (data["actions"] != null)
           ? OrigamiWidgetBuilder.buildWidgetsList(context, data["actions"])
           : null,
-      elevation: data["elevation"]?.toDouble(),
-      titleSpacing: data["titleSpacing"]?.toDouble(),
+      elevation: OrigamiWidgetUtil.parseDouble(data["elevation"]),
+      titleSpacing: OrigamiWidgetUtil.parseDouble(data["titleSpacing"]),
       flexibleSpace: data['flexibleSpace'] == null
           ? null
           : OrigamiWidgetBuilder.buildWidget(context, data["flexibleSpace"]),

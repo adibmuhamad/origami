@@ -9,10 +9,12 @@ class ContainerBuilder {
       padding: OrigamiWidgetUtil.parseEdgeInsetsGeometry(data['padding']),
       margin: OrigamiWidgetUtil.parseEdgeInsetsGeometry(data['margin']),
       color: OrigamiWidgetUtil.parseColor(data['color']),
-      width: data['width']?.toDouble(),
-      height: data['height']?.toDouble(),
+      width: OrigamiWidgetUtil.parseDouble(data['width']),
+      height: OrigamiWidgetUtil.parseDouble(data['height']),
       decoration: OrigamiWidgetUtil.parseBoxDecoration(data['decoration']),
-      child: (data["child"] != null ) ? OrigamiWidgetBuilder.buildWidget(context, data["child"]) : null,
+      child: (data["child"] != null)
+          ? OrigamiWidgetBuilder.buildWidget(context, data["child"])
+          : null,
     );
   }
 }

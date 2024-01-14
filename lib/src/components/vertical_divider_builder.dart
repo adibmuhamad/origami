@@ -6,10 +6,10 @@ class VerticalDividerBuilder {
     return VerticalDivider(
       key: data['key'] == null ? null : Key(data['key']),
       color: OrigamiWidgetUtil.parseColor(data['color']),
-      endIndent: data["endIndent"]?.toDouble(),
-      width: data["width"]?.toDouble(),
-      thickness: data["thickness"]?.toDouble(),
-      indent: data["indent"]?.toDouble(),
+      endIndent: OrigamiWidgetUtil.parseDouble(data["endIndent"]),
+      width: OrigamiWidgetUtil.parseDouble(data["width"]),
+      thickness: OrigamiWidgetUtil.parseDouble(data["thickness"]),
+      indent: OrigamiWidgetUtil.parseDouble(data["indent"]),
     );
   }
 }

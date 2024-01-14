@@ -1,8 +1,13 @@
+[![Pub](https://img.shields.io/pub/v/dynamic_widget.svg?color=orange)](https://pub.dev/packages/origami)
+
 # Origami
+>Origami is a Flutter library for building server-driven UIs. It allows you to define UI components and their configurations using JSON, enabling dynamic UI updates without requiring code changes.
 
----
+## Use Case
+>Sometimes as Mobile Developers, we are required to deliver applications as soo as possible. Moreover, UI changes can occur every week. But if there is a bug or you are asked to modify the UIs, you need to publish the updated app to the app store. This requires time and costs. We need to build flexible pages.
+So we define a light UI protocol, and implement it on Android and iOS. We can dynamically update App UIs by pushing a json file. With this capability, we can do some UI A/B testing without publishing App to app store. With this project, you can build your UIs from a json string, which is the UI protocol. The json string is very similar to the Flutter widget dart code. All widget types and widget properties are the same.
 
-Origami is a Flutter library for building server-driven UIs. It allows you to define UI components and their configurations using JSON, enabling dynamic UI updates without requiring code changes.
+![Example](https://raw.githubusercontent.com/adibmuhamad/origami/main/screenshots/example.png)
 
 ## Installation
 
@@ -120,3 +125,19 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
+## Contributing
+
+Feel free to contribute! Here's how you can contribute:
+
+- [Open an issue](https://github.com/adibmuhamad/origami/issues) if you believe you've encountered a bug.
+- Make a [pull request](https://github.com/adibmuhamad/origami/pull) to add new features/make quality-of-life improvements/fix bugs.
+
+## Author
+
+- Muhammad Adib Yusrul Muna
+
+## License
+Copyright © 2024 Muhammad Adib Yusrul Muna
+
+This software is distributed under the MIT license. See the [LICENSE](https://github.com/adibmuhamad/origami/blob/main/LICENSE) file for the full license text.

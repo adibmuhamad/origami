@@ -7,10 +7,14 @@ class PlaceholderBuilder {
     return Placeholder(
       key: data['key'] == null ? null : Key(data['key']),
       color: OrigamiWidgetUtil.parseColor(data["color"]) ?? Colors.transparent,
-      strokeWidth: data["strokeWidth"]?.toDouble() ?? 2.0,
-      fallbackWidth: data["fallbackWidth"]?.toDouble() ?? 400.0,
-      fallbackHeight: data["fallbackHeight"]?.toDouble() ?? 400.0,
-      child: (data["child"] != null) ? OrigamiWidgetBuilder.buildWidget(context, data["child"]) : null,
+      strokeWidth: OrigamiWidgetUtil.parseDouble(data["strokeWidth"]) ?? 2.0,
+      fallbackWidth:
+          OrigamiWidgetUtil.parseDouble(data["fallbackWidth"]) ?? 400.0,
+      fallbackHeight:
+          OrigamiWidgetUtil.parseDouble(data["fallbackHeight"]) ?? 400.0,
+      child: (data["child"] != null)
+          ? OrigamiWidgetBuilder.buildWidget(context, data["child"])
+          : null,
     );
   }
 }

@@ -8,6 +8,18 @@ class OrigamiWidgetUtil {
     return value == 'true';
   }
 
+  ///Returns the [double] from string.
+  static double? parseDouble(String? value) {
+    if (value == null) return null;
+    return double.tryParse(value);
+  }
+
+  ///Returns the [int] from string.
+  static int? parseInt(String? value) {
+    if (value == null) return null;
+    return int.tryParse(value);
+  }
+
   ///Returns the [Color] from string.
   static Color? parseColor(String? value) {
     try {
@@ -33,13 +45,13 @@ class OrigamiWidgetUtil {
       inherit: data['inherit'] == null ? data['inherit'] == "true" : true,
       color: parseColor(data['color']),
       backgroundColor: parseColor(data['backgroundColor']),
-      fontSize: data['fontSize']?.toDouble(),
+      fontSize: OrigamiWidgetUtil.parseDouble(data['fontSize']),
       fontWeight: parseFontWeight(data['fontWeight']),
       fontStyle: parseFontStyle(data['fontStyle']),
-      letterSpacing: data['letterSpacing']?.toDouble(),
-      wordSpacing: data['wordSpacing']?.toDouble(),
+      letterSpacing: OrigamiWidgetUtil.parseDouble(data['letterSpacing']),
+      wordSpacing: OrigamiWidgetUtil.parseDouble(data['wordSpacing']),
       textBaseline: parseTextBaseline(data['textBaseline']),
-      height: data['height']?.toDouble(),
+      height: OrigamiWidgetUtil.parseDouble(data['height']),
       leadingDistribution:
           parseTextLeadingDistribution(data['leadingDistribution']),
       locale: parseLocale(data['locale']),
@@ -522,13 +534,15 @@ class OrigamiWidgetUtil {
       default:
         return Border.all(
           color: parseColor(data['value']['color']) ?? Colors.transparent,
-          width: data['value']['width']?.toDouble() ?? 1.0,
+          width: OrigamiWidgetUtil.parseDouble(data['value']['width']) ?? 1.0,
           style: (data['value']['style'] == null)
               ? (data['value']['style'] == 'solid'
                   ? BorderStyle.solid
                   : BorderStyle.none)
               : BorderStyle.none,
-          strokeAlign: data['value']['strokeAlign']?.toDouble() ?? 1.0,
+          strokeAlign:
+              OrigamiWidgetUtil.parseDouble(data['value']['strokeAlign']) ??
+                  1.0,
         );
     }
   }
@@ -630,13 +644,14 @@ class OrigamiWidgetUtil {
         ? BorderSide.none
         : BorderSide(
             color: parseColor(data['color']) ?? Colors.transparent,
-            width: data['width']?.toDouble() ?? 1.0,
+            width: OrigamiWidgetUtil.parseDouble(data['width']) ?? 1.0,
             style: (data['style'] == null)
                 ? (data['style'] == 'solid'
                     ? BorderStyle.solid
                     : BorderStyle.none)
                 : BorderStyle.none,
-            strokeAlign: data['strokeAlign']?.toDouble() ?? 1.0,
+            strokeAlign:
+                OrigamiWidgetUtil.parseDouble(data['strokeAlign']) ?? 1.0,
           );
   }
 

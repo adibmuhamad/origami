@@ -6,25 +6,24 @@ class AlertDialogBuilder {
   static Widget build(BuildContext context, Map<String, dynamic> data) {
     return AlertDialog(
       key: data['key'] == null ? null : Key(data['key']),
-      titlePadding: OrigamiWidgetUtil.parseEdgeInsetsGeometry(
-          data['titlePadding']),
+      titlePadding:
+          OrigamiWidgetUtil.parseEdgeInsetsGeometry(data['titlePadding']),
       actions: data["actions"] == null
           ? []
           : OrigamiWidgetBuilder.buildWidgetsList(context, data['actions']),
-      actionsAlignment: OrigamiWidgetUtil.parseMainAxisAlignment(
-          data['actionsAlignment']),
-      alignment:
-          OrigamiWidgetUtil.parseAlignmentGeometry(data['alignment']),
+      actionsAlignment:
+          OrigamiWidgetUtil.parseMainAxisAlignment(data['actionsAlignment']),
+      alignment: OrigamiWidgetUtil.parseAlignmentGeometry(data['alignment']),
       shape: RoundedRectangleBorder(
-        borderRadius: OrigamiWidgetUtil.parseBorderRadiusGeometry(
-            data['borderRadius']),
+        borderRadius:
+            OrigamiWidgetUtil.parseBorderRadiusGeometry(data['borderRadius']),
       ),
-      buttonPadding: OrigamiWidgetUtil.parseEdgeInsetsGeometry(
-          data['buttonPadding']),
+      buttonPadding:
+          OrigamiWidgetUtil.parseEdgeInsetsGeometry(data['buttonPadding']),
       content: data["content"] == null
           ? null
           : OrigamiWidgetBuilder.buildWidget(context, data['content']),
-      elevation: data["elevation"]?.toDouble(),
+      elevation: OrigamiWidgetUtil.parseDouble(data["elevation"]),
       clipBehavior: OrigamiWidgetUtil.parseClip(data['clipBehavior']),
       scrollable: OrigamiWidgetUtil.parseCondition(data["scrollable"]) ?? false,
       title: data["title"] == null

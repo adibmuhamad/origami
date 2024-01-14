@@ -38,6 +38,7 @@ abstract class OrigamiWidgetBuilder {
     'inkWell': InkWellBuilder.build,
     'listView': ListViewBuilder.build,
     'outlinedButton': OutlinedButtonBuilder.build,
+    'padding': PaddingBuilder.build,
     'placeholder': PlaceholderBuilder.build,
     'positioned': PositionedBuilder.build,
     'row': RowBuilder.build,
