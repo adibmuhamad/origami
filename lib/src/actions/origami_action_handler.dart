@@ -9,7 +9,7 @@ class OrigamiActionHandler {
       switch (actionType) {
         case 'showDialog':
           return _showDialog(context, action);
-        case 'bottomShee':
+        case 'bottomSheet':
           return _showBottomSheet(context, action);
         case 'navigate':
           return _navigate(context, action);
@@ -23,7 +23,7 @@ class OrigamiActionHandler {
     return showDialog(
       context: context,
       builder: (context) {
-        return OrigamiWidgetBuilder.buildWidget(context, data['data']);
+        return OrigamiWidgetBuilder.buildWidget(context, data['builder']);
       },
     );
   }
@@ -32,7 +32,7 @@ class OrigamiActionHandler {
       BuildContext context, Map<dynamic, dynamic> data) {
     return showModalBottomSheet(
       context: context,
-      builder: (_) => OrigamiWidgetBuilder.buildWidget(context, data['data']),
+      builder: (_) => OrigamiWidgetBuilder.buildWidget(context, data['builder']),
     );
   }
 
