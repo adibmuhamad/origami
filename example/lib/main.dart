@@ -10,6 +10,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Define your theme data
+    ThemeData appTheme = ThemeData(
+      appBarTheme: const AppBarTheme(
+        color: Colors.amber,
+      ),
+
+      // Add more theme settings...
+    );
+
+    // Set the theme data in OrigamiBuilder
+    OrigamiBuilder.themeData = appTheme;
+
     // Define controllers map in your main widget state
     Map<String, dynamic> controllers = {
       'username': TextEditingController(),

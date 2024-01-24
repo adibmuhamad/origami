@@ -3,6 +3,8 @@ import 'package:origami/src/builder/origami_widget_builder.dart';
 import 'package:origami/src/utils/index.dart';
 
 abstract class OrigamiBuilder {
+  static ThemeData? themeData;
+
   static Widget buildFromJson(
     BuildContext context, {
     required Map<String, dynamic> json,
@@ -11,13 +13,27 @@ abstract class OrigamiBuilder {
     Map<String, Function(dynamic params)>? onListeners,
   }) {
     try {
-      return OrigamiWidgetBuilder.buildWidget(
-        context,
-        json,
-        controllers: controllers,
-        onMethodCall: onMethodCall,
-        onListeners: onListeners,
-      );
+      // Apply theme data
+      Widget themedWidget = themeData != null
+          ? Theme(
+              data: themeData!,
+              child: OrigamiWidgetBuilder.buildWidget(
+                context,
+                json,
+                controllers: controllers,
+                onMethodCall: onMethodCall,
+                onListeners: onListeners,
+              ),
+            )
+          : OrigamiWidgetBuilder.buildWidget(
+              context,
+              json,
+              controllers: controllers,
+              onMethodCall: onMethodCall,
+              onListeners: onListeners,
+            );
+
+      return themedWidget;
     } catch (e, stackTrace) {
       debugPrint('Error: $e');
       debugPrint('Stack trace: $stackTrace');
@@ -41,13 +57,27 @@ abstract class OrigamiBuilder {
               if (snapshot.hasData) {
                 Map<String, dynamic>? jsonData = snapshot.data;
                 if (jsonData != null) {
-                  return OrigamiWidgetBuilder.buildWidget(
-                    context,
-                    jsonData,
-                    controllers: controllers,
-                    onMethodCall: onMethodCall,
-                    onListeners: onListeners,
-                  );
+                  // Apply theme data
+                  Widget themedWidget = themeData != null
+                      ? Theme(
+                          data: themeData!,
+                          child: OrigamiWidgetBuilder.buildWidget(
+                            context,
+                            jsonData,
+                            controllers: controllers,
+                            onMethodCall: onMethodCall,
+                            onListeners: onListeners,
+                          ),
+                        )
+                      : OrigamiWidgetBuilder.buildWidget(
+                          context,
+                          jsonData,
+                          controllers: controllers,
+                          onMethodCall: onMethodCall,
+                          onListeners: onListeners,
+                        );
+
+                  return themedWidget;
                 } else {
                   return const SizedBox();
                 }
@@ -87,13 +117,27 @@ abstract class OrigamiBuilder {
               if (snapshot.hasData) {
                 Map<String, dynamic>? jsonData = snapshot.data;
                 if (jsonData != null) {
-                  return OrigamiWidgetBuilder.buildWidget(
-                    context,
-                    jsonData,
-                    controllers: controllers,
-                    onMethodCall: onMethodCall,
-                    onListeners: onListeners,
-                  );
+                  // Apply theme data
+                  Widget themedWidget = themeData != null
+                      ? Theme(
+                          data: themeData!,
+                          child: OrigamiWidgetBuilder.buildWidget(
+                            context,
+                            jsonData,
+                            controllers: controllers,
+                            onMethodCall: onMethodCall,
+                            onListeners: onListeners,
+                          ),
+                        )
+                      : OrigamiWidgetBuilder.buildWidget(
+                          context,
+                          jsonData,
+                          controllers: controllers,
+                          onMethodCall: onMethodCall,
+                          onListeners: onListeners,
+                        );
+
+                  return themedWidget;
                 } else {
                   return const SizedBox();
                 }
@@ -136,13 +180,27 @@ abstract class OrigamiBuilder {
               if (snapshot.hasData) {
                 Map<String, dynamic>? jsonData = snapshot.data;
                 if (jsonData != null) {
-                  return OrigamiWidgetBuilder.buildWidget(
-                    context,
-                    jsonData,
-                    controllers: controllers,
-                    onMethodCall: onMethodCall,
-                    onListeners: onListeners,
-                  );
+                  // Apply theme data
+                  Widget themedWidget = themeData != null
+                      ? Theme(
+                          data: themeData!,
+                          child: OrigamiWidgetBuilder.buildWidget(
+                            context,
+                            jsonData,
+                            controllers: controllers,
+                            onMethodCall: onMethodCall,
+                            onListeners: onListeners,
+                          ),
+                        )
+                      : OrigamiWidgetBuilder.buildWidget(
+                          context,
+                          jsonData,
+                          controllers: controllers,
+                          onMethodCall: onMethodCall,
+                          onListeners: onListeners,
+                        );
+
+                  return themedWidget;
                 } else {
                   return const SizedBox();
                 }
@@ -166,7 +224,8 @@ abstract class OrigamiBuilder {
     return const SizedBox();
   }
 
-  static void registerCustomBuildersFromJsonList(List<Map<String, dynamic>> customWidgets) {
+  static void registerCustomBuildersFromJsonList(
+      List<Map<String, dynamic>> customWidgets) {
     for (final widget in customWidgets) {
       final type = widget['type'] as String?;
       final builder = widget['builder'] as Widget Function(
