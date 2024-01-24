@@ -3,6 +3,7 @@
 * Update includes.
   1. can call methods in a dynamic widget.
   2. listen to controller changes.
+  3. can add multiple custom widgets
 
 ## 0.0.2
 

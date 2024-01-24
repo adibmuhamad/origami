@@ -3,16 +3,6 @@ import 'package:origami/src/builder/origami_widget_builder.dart';
 import 'package:origami/src/utils/index.dart';
 
 abstract class OrigamiBuilder {
-  final Map<String, dynamic>? controllers;
-  final Function(dynamic params)? onMethodCall;
-  final Map<String, Function(dynamic params)>? onListener;
-
-  OrigamiBuilder({
-    this.controllers,
-    this.onMethodCall,
-    this.onListener,
-  });
-
   static Widget buildFromJson(
     BuildContext context, {
     required Map<String, dynamic> json,
@@ -174,5 +164,22 @@ abstract class OrigamiBuilder {
       return Container();
     }
     return const SizedBox();
+  }
+
+  static void registerCustomBuildersFromJsonList(List<Map<String, dynamic>> customWidgets) {
+    for (final widget in customWidgets) {
+      final type = widget['type'] as String?;
+      final builder = widget['builder'] as Widget Function(
+        BuildContext,
+        Map<String, dynamic>, {
+        Map<String, dynamic>? controllers,
+        Function(dynamic params)? onMethodCall,
+        Map<String, Function(dynamic params)>? onListeners,
+      })?;
+
+      if (type != null && builder != null) {
+        OrigamiWidgetBuilder.registerCustomBuilder(type, builder);
+      }
+    }
   }
 }

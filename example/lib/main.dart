@@ -95,10 +95,43 @@ class MyApp extends StatelessWidget {
               "text": "Forgot password?",
               "style": {"color": "#3366CC", "fontSize": "16.0"},
             },
+            {
+              "type": "sizedBox",
+              "height": "30.0",
+            },
+            {
+              "type": "customWidget1",
+            },
+            {
+              "type": "customWidget2",
+            },
           ],
         }
       },
     };
+
+    // Register default builders
+    OrigamiBuilder.registerCustomBuildersFromJsonList([
+      {
+        "type": "customWidget1",
+        "builder": (BuildContext context, Map<String, dynamic> data,
+            {Map<String, dynamic>? controllers,
+            Function(dynamic params)? onMethodCall,
+            Map<String, Function(dynamic params)>? onListeners}) {
+          return const Text("Your Dynamic Widget");
+        }
+      },
+      {
+        "type": "customWidget2",
+        "builder": (BuildContext context, Map<String, dynamic> data,
+            {Map<String, dynamic>? controllers,
+            Function(dynamic params)? onMethodCall,
+            Map<String, Function(dynamic params)>? onListeners}) {
+          return const Text("Your Dynamic Widget 2");
+        }
+      },
+      // Add more custom widgets as needed
+    ]);
 
     return MaterialApp(
       home: OrigamiBuilder.buildFromJson(

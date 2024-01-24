@@ -24,6 +24,7 @@ abstract class OrigamiWidgetBuilder {
     }
   }
 
+
   static List<Widget> buildWidgetsList(
     BuildContext context,
     List<dynamic> dataList, {
@@ -42,48 +43,61 @@ abstract class OrigamiWidgetBuilder {
         .toList();
   }
 
-  static Map<
-      String,
-      Widget Function(
-    BuildContext,
-    Map<String, dynamic>, {
-    Map<String, dynamic>? controllers,
-    Function(dynamic params)? onMethodCall,
-    Map<String, Function(dynamic params)>? onListeners,
-  })> origamiWidgetBuilders = {
-    'alertDialog': AlertDialogBuilder.build,
-    'appBar': AppBarBuilder.build,
-    'card': CardBuilder.build,
-    'column': ColumnBuilder.build,
-    'container': ContainerBuilder.build,
-    'divider': DividerBuilder.build,
-    'elevatedButton': ElevatedButtonBuilder.build,
-    'expanded': ExpandedBuilder.build,
-    'fittedBox': FittedBoxBuilder.build,
-    'flexible': FlexibleBuilder.build,
-    'floatingActionButton': FloatingActionButtonBuilder.build,
-    'form': FormBuilder.build,
-    'gestureDetector': GestureDetectorBuilder.build,
-    'icon': IconBuilder.build,
-    'iconButton': IconButtonBuilder.build,
-    'image': ImageBuilder.build,
-    'inkWell': InkWellBuilder.build,
-    'listView': ListViewBuilder.build,
-    'outlinedButton': OutlinedButtonBuilder.build,
-    'padding': PaddingBuilder.build,
-    'placeholder': PlaceholderBuilder.build,
-    'positioned': PositionedBuilder.build,
-    'row': RowBuilder.build,
-    'safeArea': SafeAreaBuilder.build,
-    'scaffold': ScaffoldBuilder.build,
-    'singleChildScrollView': SingleChildScrollViewBuilder.build,
-    'sizedBox': SizedBoxBuilder.build,
-    'stack': StackBuilder.build,
-    'spacer': SpacerBuilder.build,
-    'text': TextBuilder.build,
-    'textButton': TextButtonBuilder.build,
-    'textFormField': TextFormFieldBuilder.build,
-    'verticalDivider': VerticalDividerBuilder.build,
-    'wrap': WrapBuilder.build,
+  static void registerCustomBuilder(
+    String type,
+    Widget Function(
+      BuildContext,
+      Map<String, dynamic>, {
+      Map<String, dynamic>? controllers,
+      Function(dynamic params)? onMethodCall,
+      Map<String, Function(dynamic params)>? onListeners,
+    }) builder,
+  ) {
+    origamiWidgetBuilders[type] = builder;
+  }
+
+ static Map<
+    String,
+    Widget Function(
+      BuildContext,
+      Map<String, dynamic>, {
+      Map<String, dynamic>? controllers,
+      Function(dynamic params)? onMethodCall,
+      Map<String, Function(dynamic params)>? onListeners,
+    })> origamiWidgetBuilders = {
+    'alertDialog': AlertDialogBuilder.build, 
+    'appBar': AppBarBuilder.build, 
+    'card': CardBuilder.build, 
+    'column': ColumnBuilder.build, 
+    'container': ContainerBuilder.build, 
+    'divider': DividerBuilder.build, 
+    'elevatedButton': ElevatedButtonBuilder.build, 
+    'expanded': ExpandedBuilder.build, 
+    'fittedBox': FittedBoxBuilder.build, 
+    'flexible': FlexibleBuilder.build, 
+    'floatingActionButton': FloatingActionButtonBuilder.build, 
+    'form': FormBuilder.build, 
+    'gestureDetector': GestureDetectorBuilder.build, 
+    'icon': IconBuilder.build, 
+    'iconButton': IconButtonBuilder.build, 
+    'image': ImageBuilder.build, 
+    'inkWell': InkWellBuilder.build, 
+    'listView': ListViewBuilder.build, 
+    'outlinedButton': OutlinedButtonBuilder.build, 
+    'padding': PaddingBuilder.build, 
+    'placeholder': PlaceholderBuilder.build, 
+    'positioned': PositionedBuilder.build, 
+    'row': RowBuilder.build, 
+    'safeArea': SafeAreaBuilder.build, 
+    'scaffold': ScaffoldBuilder.build, 
+    'singleChildScrollView': SingleChildScrollViewBuilder.build, 
+    'sizedBox': SizedBoxBuilder.build, 
+    'stack': StackBuilder.build, 
+    'spacer': SpacerBuilder.build, 
+    'text': TextBuilder.build, 
+    'textButton': TextButtonBuilder.build, 
+    'textFormField': TextFormFieldBuilder.build, 
+    'verticalDivider': VerticalDividerBuilder.build, 
+    'wrap': WrapBuilder.build, 
   };
 }
