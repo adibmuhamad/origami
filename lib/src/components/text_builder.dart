@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:origami/src/utils/index.dart';
 
 class TextBuilder {
-  static Widget build(BuildContext context, Map<String, dynamic> data) {
+  static Widget build(
+    BuildContext context,
+    Map<String, dynamic> data, {
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
+  }) {
     return Text(
       data['text'] ?? '',
       key: data['key'] == null ? null : Key(data['key']),

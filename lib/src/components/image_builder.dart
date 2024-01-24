@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:origami/src/utils/index.dart';
 
 class ImageBuilder {
-  static Widget build(BuildContext context, Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data,
+      { Map<String, dynamic>? controllers,Function(dynamic params)? onMethodCall,Map<String, Function(dynamic params)>? onListeners,}) {
     try {
       switch (data['imageType']) {
         case 'asset':

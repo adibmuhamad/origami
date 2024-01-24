@@ -4,11 +4,30 @@ import 'package:origami/src/components/icon_builder.dart';
 import 'package:origami/src/utils/index.dart';
 
 class TextFormFieldBuilder {
-  static Widget build(BuildContext context, Map<String, dynamic> data) {
+  static Widget build(
+    BuildContext context,
+    Map<String, dynamic> data, {
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
+  }) {
+    String? controllerKey = data['controller'] as String?;
+    TextEditingController? controller = controllers?[controllerKey];
+
     return TextFormField(
       key: data['key'] == null ? null : Key(data['key']),
       validator: data['validator'],
-      controller: TextEditingController(),
+      controller: controller,
+      onChanged: (value) {
+       if (onListeners != null && onListeners.containsKey('onChanged')) {
+          onListeners['onChanged']!(value);
+        }
+      },
+      onFieldSubmitted: (value) {
+        if (onListeners != null && onListeners.containsKey('onFieldSubmitted')) {
+          onListeners['onFieldSubmitted']!(value);
+        }
+      },
       textAlign: OrigamiWidgetUtil.parseTextAlign(data['textAlign']) ??
           TextAlign.start,
       autocorrect:
@@ -41,7 +60,12 @@ class TextFormFieldBuilder {
               label: data['decoration']['label'] == null
                   ? null
                   : OrigamiWidgetBuilder.buildWidget(
-                      context, data['decoration']['label']),
+                      context,
+                      data['decoration']['label'],
+                      controllers: controllers,
+                      onMethodCall: onMethodCall,
+                      onListeners: onListeners,
+                    ),
               labelText: data['decoration']['labelText'] ?? '',
               hintText: data['decoration']['hintText'] ?? '',
               prefixIcon: data['decoration']['prefixIcon'] != null

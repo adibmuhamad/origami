@@ -3,9 +3,13 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class ListViewBuilder {
-  static Widget build(BuildContext context, Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data,
+      { Map<String, dynamic>? controllers,Function(dynamic params)? onMethodCall,Map<String, Function(dynamic params)>? onListeners,}) {
+        String? controllerKey = data['controller'] as String?;
+    ScrollController? controller = controllers?[controllerKey];
     return ListView(
       key: data['key'] == null ? null : Key(data['key']),
+      controller: controller,
       scrollDirection: (data["scrollDirection"] != null)
           ? (data["scrollDirection"] == 'vertical')
               ? Axis.vertical
@@ -33,7 +37,7 @@ class ListViewBuilder {
       reverse: OrigamiWidgetUtil.parseCondition(data["reverse"]) ?? false,
       shrinkWrap: OrigamiWidgetUtil.parseCondition(data["shrinkWrap"]) ?? false,
       children:
-          OrigamiWidgetBuilder.buildWidgetsList(context, data["children"]),
+          OrigamiWidgetBuilder.buildWidgetsList(context, data["children"], controllers: controllers,onMethodCall: onMethodCall,onListeners: onListeners,),
     );
   }
 }

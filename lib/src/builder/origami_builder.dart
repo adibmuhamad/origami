@@ -3,10 +3,31 @@ import 'package:origami/src/builder/origami_widget_builder.dart';
 import 'package:origami/src/utils/index.dart';
 
 abstract class OrigamiBuilder {
-  static Widget buildFromJson(BuildContext context,
-      {required Map<String, dynamic> json}) {
+  final Map<String, dynamic>? controllers;
+  final Function(dynamic params)? onMethodCall;
+  final Map<String, Function(dynamic params)>? onListener;
+
+  OrigamiBuilder({
+    this.controllers,
+    this.onMethodCall,
+    this.onListener,
+  });
+
+  static Widget buildFromJson(
+    BuildContext context, {
+    required Map<String, dynamic> json,
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
+  }) {
     try {
-      return OrigamiWidgetBuilder.buildWidget(context, json);
+      return OrigamiWidgetBuilder.buildWidget(
+        context,
+        json,
+        controllers: controllers,
+        onMethodCall: onMethodCall,
+        onListeners: onListeners,
+      );
     } catch (e, stackTrace) {
       debugPrint('Error: $e');
       debugPrint('Stack trace: $stackTrace');
@@ -14,8 +35,13 @@ abstract class OrigamiBuilder {
     }
   }
 
-  static Future<Widget> buildFromAsset(BuildContext context,
-      {required String assetPath}) async {
+  static Future<Widget> buildFromAsset(
+    BuildContext context, {
+    required String assetPath,
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
+  }) async {
     try {
       FutureBuilder<Map<String, dynamic>?>(
         future: OrigamiHelper.loadAsset(assetPath: assetPath),
@@ -25,7 +51,13 @@ abstract class OrigamiBuilder {
               if (snapshot.hasData) {
                 Map<String, dynamic>? jsonData = snapshot.data;
                 if (jsonData != null) {
-                  return OrigamiWidgetBuilder.buildWidget(context, jsonData);
+                  return OrigamiWidgetBuilder.buildWidget(
+                    context,
+                    jsonData,
+                    controllers: controllers,
+                    onMethodCall: onMethodCall,
+                    onListeners: onListeners,
+                  );
                 } else {
                   return const SizedBox();
                 }
@@ -41,7 +73,7 @@ abstract class OrigamiBuilder {
           }
         },
       );
-     } catch (e, stackTrace) {
+    } catch (e, stackTrace) {
       debugPrint('Error: $e');
       debugPrint('Stack trace: $stackTrace');
       return Container();
@@ -49,8 +81,13 @@ abstract class OrigamiBuilder {
     return const SizedBox();
   }
 
-  static Future<Widget> buildFromNetwork(BuildContext context,
-      {required String url}) async {
+  static Future<Widget> buildFromNetwork(
+    BuildContext context, {
+    required String url,
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
+  }) async {
     try {
       FutureBuilder<Map<String, dynamic>?>(
         future: OrigamiNetwork.fetch(url: url),
@@ -60,7 +97,13 @@ abstract class OrigamiBuilder {
               if (snapshot.hasData) {
                 Map<String, dynamic>? jsonData = snapshot.data;
                 if (jsonData != null) {
-                  return OrigamiWidgetBuilder.buildWidget(context, jsonData);
+                  return OrigamiWidgetBuilder.buildWidget(
+                    context,
+                    jsonData,
+                    controllers: controllers,
+                    onMethodCall: onMethodCall,
+                    onListeners: onListeners,
+                  );
                 } else {
                   return const SizedBox();
                 }
@@ -76,7 +119,7 @@ abstract class OrigamiBuilder {
           }
         },
       );
-      } catch (e, stackTrace) {
+    } catch (e, stackTrace) {
       debugPrint('Error: $e');
       debugPrint('Stack trace: $stackTrace');
       return Container();
@@ -89,6 +132,9 @@ abstract class OrigamiBuilder {
     required String link,
     required String query,
     Map<String, dynamic>? variables,
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
   }) async {
     try {
       FutureBuilder<Map<String, dynamic>?>(
@@ -100,7 +146,13 @@ abstract class OrigamiBuilder {
               if (snapshot.hasData) {
                 Map<String, dynamic>? jsonData = snapshot.data;
                 if (jsonData != null) {
-                  return OrigamiWidgetBuilder.buildWidget(context, jsonData);
+                  return OrigamiWidgetBuilder.buildWidget(
+                    context,
+                    jsonData,
+                    controllers: controllers,
+                    onMethodCall: onMethodCall,
+                    onListeners: onListeners,
+                  );
                 } else {
                   return const SizedBox();
                 }
@@ -116,7 +168,7 @@ abstract class OrigamiBuilder {
           }
         },
       );
-      } catch (e, stackTrace) {
+    } catch (e, stackTrace) {
       debugPrint('Error: $e');
       debugPrint('Stack trace: $stackTrace');
       return Container();

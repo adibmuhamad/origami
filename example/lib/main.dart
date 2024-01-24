@@ -10,6 +10,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Define controllers map in your main widget state
+    Map<String, dynamic> controllers = {
+      'username': TextEditingController(),
+      'password': TextEditingController(),
+      // Add more controllers as needed
+    };
+
     // Example JSON data
     Map<String, dynamic> jsonData = {
       "type": "scaffold",
@@ -50,6 +57,11 @@ class MyApp extends StatelessWidget {
                       "labelText": "Username",
                       "hintText": "Enter your username",
                     },
+                    "controller": "username",
+                    "onListeners": {
+                      "onChanged": {"method": "usernameChanged"},
+                      "onFieldSubmitted": {"method": "usernameSubmitted"}
+                    }
                   },
                   {
                     "type": "textFormField",
@@ -58,6 +70,7 @@ class MyApp extends StatelessWidget {
                       "hintText": "Enter your password",
                     },
                     "obscureText": "true",
+                    "controller": "password",
                   },
                   {
                     "type": "sizedBox",
@@ -65,7 +78,13 @@ class MyApp extends StatelessWidget {
                   },
                   {
                     "type": "elevatedButton",
-                    "onPressed": {},
+                    "onPressed": {
+                      "method": "loginButtonPressed",
+                      "params": {
+                        "username": "exampleUsername",
+                        "password": "examplePassword",
+                      }
+                    },
                     "child": {"type": "text", "text": "Login"},
                   },
                 ],
@@ -81,14 +100,45 @@ class MyApp extends StatelessWidget {
       },
     };
 
-    // Build the UI using OrigamiBuilder
-    Widget dynamicUI = OrigamiBuilder.buildFromJson(
-      context,
-      json: jsonData,
-    );
-
     return MaterialApp(
-      home: dynamicUI,
+      home: OrigamiBuilder.buildFromJson(
+        context,
+        json: jsonData,
+        controllers: controllers,
+        onListeners: {
+          'onChanged': (dynamic params) {
+            // Handle the 'onChanged' event
+            debugPrint('Text changed with parameters: $params');
+          },
+          'onFieldSubmitted': (dynamic params) {
+            // Handle the 'onFieldSubmitted' event
+            debugPrint('Text changed with parameters: $params');
+          },
+        },
+        onMethodCall: (dynamic params) {
+          // Handle different method calls based on the method name
+          if (params != null && params['method'] != null) {
+            String methodName = params['method'];
+            Map<String, dynamic>? methodParams = params['params'];
+
+            // Perform logic based on the method name
+            switch (methodName) {
+              case 'loginButtonPressed':
+                if (methodParams != null) {
+                  String username = controllers['username']!.text;
+                  String password = controllers['password']!.text;
+                  debugPrint(
+                      "Login button pressed with username: $username, password: $password");
+                  debugPrint(
+                      "Login button pressed with username: $username, password: $password");
+                  // Add your login logic here using the provided parameters
+                }
+                break;
+              // Add more cases for other method names as needed
+            }
+          }
+        },
+      ),
     );
   }
 }

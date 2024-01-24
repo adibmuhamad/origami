@@ -3,7 +3,13 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class WrapBuilder {
-  static Widget build(BuildContext context, Map<String, dynamic> data) {
+  static Widget build(
+    BuildContext context,
+    Map<String, dynamic> data, {
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
+  }) {
     return Wrap(
       key: data['key'] == null ? null : Key(data['key']),
       spacing: OrigamiWidgetUtil.parseDouble(data["spacing"]) ?? 0.0,
@@ -12,8 +18,13 @@ class WrapBuilder {
           WrapAlignment.start,
       crossAxisAlignment:
           OrigamiWidgetUtil.parseWrapCrossAlignment(data['crossAxisAlignment']),
-      children:
-          OrigamiWidgetBuilder.buildWidgetsList(context, data['children']),
+      children: OrigamiWidgetBuilder.buildWidgetsList(
+        context,
+        data['children'],
+        controllers: controllers,
+        onMethodCall: onMethodCall,
+        onListeners: onListeners,
+      ),
     );
   }
 }

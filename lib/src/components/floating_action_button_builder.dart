@@ -3,7 +3,13 @@ import 'package:origami/src/builder/index.dart';
 import 'package:origami/src/utils/index.dart';
 
 class FloatingActionButtonBuilder {
-  static Widget build(BuildContext context, Map<String, dynamic> data) {
+  static Widget build(
+    BuildContext context,
+    Map<String, dynamic> data, {
+    Map<String, dynamic>? controllers,
+    Function(dynamic params)? onMethodCall,
+    Map<String, Function(dynamic params)>? onListeners,
+  }) {
     return FloatingActionButton(
       key: data['key'] == null ? null : Key(data['key']),
       onPressed: () {},
@@ -38,7 +44,13 @@ class FloatingActionButtonBuilder {
       splashColor: OrigamiWidgetUtil.parseColor(data['splashColor']),
       child: data['child'] == null
           ? null
-          : OrigamiWidgetBuilder.buildWidget(context, data['child']),
+          : OrigamiWidgetBuilder.buildWidget(
+              context,
+              data['child'],
+              controllers: controllers,
+              onMethodCall: onMethodCall,
+              onListeners: onListeners,
+            ),
     );
   }
 }

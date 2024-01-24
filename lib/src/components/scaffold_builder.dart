@@ -4,7 +4,8 @@ import 'package:origami/src/components/index.dart';
 import 'package:origami/src/utils/origami_widget_util.dart';
 
 class ScaffoldBuilder {
-  static Widget build(BuildContext context, Map<String, dynamic> data) {
+  static Widget build(BuildContext context, Map<String, dynamic> data,
+      { Map<String, dynamic>? controllers,Function(dynamic params)? onMethodCall,Map<String, Function(dynamic params)>? onListeners,}) {
     return Scaffold(
       key: data['key'] == null ? null : Key(data['key']),
       appBar: (data['appBar'] != null)
@@ -16,7 +17,7 @@ class ScaffoldBuilder {
       resizeToAvoidBottomInset:
           OrigamiWidgetUtil.parseCondition(data["resizeToAvoidBottomInset"]),
       body: (data["body"] != null)
-          ? OrigamiWidgetBuilder.buildWidget(context, data["body"])
+          ? OrigamiWidgetBuilder.buildWidget(context, data["body"], controllers: controllers ,onMethodCall: onMethodCall, onListeners: onListeners,)
           : null,
       floatingActionButton: (data["floatingActionButton"] != null)
           ? FloatingActionButtonBuilder.build(
